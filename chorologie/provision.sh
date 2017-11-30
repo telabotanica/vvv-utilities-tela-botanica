@@ -15,7 +15,7 @@ if [[ ! -d "/srv/www/chorologie" ]]; then
 	# adds abs path to framework
 	cp framework.defaut.php framework.php
 	tbframeworkPath="'\/srv\/www\/tb-framework\/Framework\.php';"
-	sed -i "s/^require_once.+/require_once $tbframeworkPath" framework.php
+	sed -i "s/^require_once.+/require_once $tbframeworkPath/" framework.php
 else
 	echo "chorologie already installed."
 fi

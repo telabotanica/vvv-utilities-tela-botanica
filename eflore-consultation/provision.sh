@@ -8,12 +8,12 @@ if [[ ! -d "/srv/www/eflore-consultation" ]]; then
 	# install
 	cd eflore-consultation
 	cp configurations/config.default.ini configurations/config.ini
-	sed -i 's/^domaine =.+/domaine = "local\.tela-botanica\.test"' configurations/config.ini
+	sed -i 's/^domaine =.+/domaine = "local\.tela-botanica\.test"/' configurations/config.ini
 
 	# adds abs path to framework
 	cp framework.defaut.php framework.php
 	tbframeworkPath="'\/srv\/www\/tb-framework-0.2\/autoload\.inc\.php';"
-	sed -i "s/^require_once.+/require_once $tbframeworkPath" framework.php
+	sed -i "s/^require_once.+/require_once $tbframeworkPath/" framework.php
 else
 	echo "eflore-consultation already installed."
 fi
