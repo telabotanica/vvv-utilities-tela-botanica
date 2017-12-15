@@ -7,7 +7,7 @@ if [[ ! -d "/srv/www/eflore-consultation" ]]; then
 
 	# install
 	cd eflore-consultation
-	cp configurations/config.default.ini configurations/config.ini
+	cp configurations/config.defaut.ini configurations/config.ini
 	sed -i 's/^domaine =.+/domaine = "local\.tela-botanica\.test"/' configurations/config.ini
 
 	# adds abs path to framework

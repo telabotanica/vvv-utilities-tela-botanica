@@ -12,6 +12,7 @@ if [[ ! -d "/srv/www/ezmlm-php" ]]; then
 	composer install
 	# tweaking config
 	## sed "domainsPath":, "domain":, "annuaireURL":,
+	## "authAdapter": "AuthProxyTB" + bonne URL
 	# tweaking service
 	## sed domain_root" :
 	# copy mailing-list files to local dir from sequoia (scp sequoia:/home/vpopmail/domains/tela-botanica.org/super-test/ /srv/www/vpopmail/super-test)
