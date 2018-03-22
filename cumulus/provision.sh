@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 # Télécharge et configure cumulus
+
+DIR=`dirname $0`
+
 if [[ ! -d "/srv/www/cumulus" ]]; then
 	echo -e "\nDownloading cumulus, see https://github.com/telabotanica/cumulus"
 	cd /srv/www
@@ -14,15 +17,15 @@ if [[ ! -d "/srv/www/cumulus" ]]; then
 	# tweaking config
 	sed -i 's/"username": ""/"username": "wp"/' config/config.json
 	sed -i 's/"password": ""/"password": "wp"/' config/config.json
-	old_path='"storage_root": "\/home\/fernand\/path\/to\/storage"'
-	new_path='"storage_root": "\/srv\/www\/tela-botanica-tools\/cumulus-documents"'
+	old_path='"storage_root": ".*"'
+	new_path='"storage_root": "\/srv\/www\/cumulus-documents"'
 	sed -i "s/$old_path/$new_path/" config/config.json
-	old_path='"annuaireURL": "https:\/\/localhost/service:annuaire:auth"'
-	new_path='"annuaireURL": "http:\/\/local\.tela-botanica\.test\/service:annuaire:auth"'
+	old_path='"annuaireURL": ".*"'
+	new_path='"annuaireURL": "http:\/\/api\.tela-botanica\.test\/service:annuaire:auth"'
 	sed -i "s/$old_path/$new_path/" config/config.json
 	# tweaking service
-	sed -i 's/"domain_root": "http:\/\/localhost"/"domain_root": "http:\/\/local\.tela-botanica\.test"/' config/service.json
-	sed -i 's/"base_uri": "\/cumulus"/"base_uri": "\/service:cumulus"/' config/service.jsononfig.yaml
+	sed -i 's/"domain_root": ".*"/"domain_root": "http:\/\/api\.tela-botanica\.test"/' config/service.json
+	sed -i 's/"base_uri": ".*"/"base_uri": "\/service:cumulus:doc"/' config/service.json
 
 	# Make a database for Cumulus, if we don't already have one
 	echo -e "\nCreating database 'cumulus' (if it's not already there)"
@@ -31,8 +34,11 @@ if [[ ! -d "/srv/www/cumulus" ]]; then
 	echo -e "\n DB operations done.\n\n"
 
 	# initiate cumulus storage
-	## mkdir _projets/149 tar xcvf projet149.tar.gz _projets/149
-	## mysql -u wp -p cumulus < cumulus_files.sql
+	mkdir -p /srv/www/cumulus-documents/_projets
+	tar zxf ${DIR}/projet149.tar.gz --directory /srv/www/cumulus-documents/_projets/
+	# Database
+	tar xf ${DIR}/cumulus_files.sql.tar.xz
+	mysql -u wp -pwp cumulus < cumulus_files.sql
 else
 	echo "cumulus already installed."
 fi

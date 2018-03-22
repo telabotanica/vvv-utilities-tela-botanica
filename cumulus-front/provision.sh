@@ -12,10 +12,10 @@ if [[ ! -d "/srv/www/cumulus-front" ]]; then
 
 	# tweaking config (just for basic usage, gonna be overload by tb-plugin)
 	old_path='http:\/\/api\.tela-botanica\.org\/cumulus'
-	new_path='http:\/\/local\.tela-botanica\.test\/service:cumulus:doc'
+	new_path='http:\/\/api\.tela-botanica\.test\/service:cumulus:doc'
 	sed -i "s/$old_path/$new_path/" app/utils/main-config.js
 	old_path='https:\/\/www\.tela-botanica\.org\/service:annuaire'
-	new_path='http:\/\/local\.tela-botanica\.test\/service:annuaire'
+	new_path='http:\/\/api\.tela-botanica\.test\/service:annuaire'
 	sed -i "s/$old_path/$new_path/g" app/utils/main-config.js
 else
 	echo "cumulus-front already installed."

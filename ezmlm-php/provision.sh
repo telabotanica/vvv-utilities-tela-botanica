@@ -7,16 +7,19 @@ if [[ ! -d "/srv/www/ezmlm-php" ]]; then
 
 	# install
 	cd ezmlm-php
+	cp config/service.default.json config/service.json
 	cp config/config.default.json config/config.json
-	cp config/service.default.json service/config.json
 	composer install
 	# tweaking config
-	## sed "domainsPath":, "domain":, "annuaireURL":,
-	## "authAdapter": "AuthProxyTB" + bonne URL
+	sed -i 's/"domainsPath": ".*"/"domainsPath": "/srv/www/vpopmail/domains"/' config/config.json
+	sed -i 's/"annuaireURL": ".*"/"annuaireURL": "http://api.tela-botanica.test/annuaire/service:annuaire:auth"/' config/config.json
+	#sed -i 's/"headerName": ".*"/"headerName": "Auth"/' config/config.json
 	# tweaking service
-	## sed domain_root" :
-	# copy mailing-list files to local dir from sequoia (scp sequoia:/home/vpopmail/domains/tela-botanica.org/super-test/ /srv/www/vpopmail/super-test)
-	# or extract from archive (tar zxvf ezmlm-php/super-test.tar.gz -C /srv/www/vpopmail/local.tela-botanica.test/super-test)
+	sed -i 's/"domain_root": ".*"/"domain_root" : "http://api.tela-botanica.test"/' config/service.json
+
+	# # replace imported symlink
+	# rm /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum
+	# ln -s /srv/www/ezmlm-php /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum
 else
 	echo "ezmlm-php already installed."
 fi
