@@ -11,11 +11,11 @@ if [[ ! -d "/srv/www/ezmlm-php" ]]; then
 	cp config/config.default.json config/config.json
 	composer install
 	# tweaking config
-	sed -i 's/"domainsPath": ".*"/"domainsPath": "/srv/www/vpopmail/domains"/' config/config.json
-	sed -i 's/"annuaireURL": ".*"/"annuaireURL": "http://api.tela-botanica.test/annuaire/service:annuaire:auth"/' config/config.json
+	sed -i 's/"domainsPath": ".*"/"domainsPath": "\/srv\/www\/vpopmail\/domains"/' config/config.json
+	sed -i 's/"annuaireURL": ".*"/"annuaireURL": "http:\/\/api.tela-botanica.test\/annuaire\/service:annuaire:auth"/' config/config.json
 	#sed -i 's/"headerName": ".*"/"headerName": "Auth"/' config/config.json
 	# tweaking service
-	sed -i 's/"domain_root": ".*"/"domain_root" : "http://api.tela-botanica.test"/' config/service.json
+	sed -i 's/"domain_root": ".*"/"domain_root" : "http:\/\/api.tela-botanica.test"/' config/service.json
 
 	# # replace imported symlink
 	# rm /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum
