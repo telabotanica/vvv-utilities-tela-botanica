@@ -8,6 +8,7 @@ if [[ ! -d "/srv/www/cumulus-front" ]]; then
 	# install
 	cd cumulus-front
 	npm install
+	npm run build
 	cp app/utils/main-config.defaut.js app/utils/main-config.js
 
 	# tweaking config (just for basic usage, gonna be overload by tb-plugin)
@@ -18,5 +19,13 @@ if [[ ! -d "/srv/www/cumulus-front" ]]; then
 	new_path='http:\/\/api\.tela-botanica\.test\/service:annuaire'
 	sed -i "s/$old_path/$new_path/g" app/utils/main-config.js
 else
-	echo "cumulus-front already installed."
+	echo "cumulus-front already installed, trying to upgrade"
+	cd /srv/www/cumulus-front
+	if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
+		git pull
+		npm install
+		npm run build
+	else
+		echo "cannot pull, please commit first"
+	fi
 fi

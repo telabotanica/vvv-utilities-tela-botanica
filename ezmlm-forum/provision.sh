@@ -7,10 +7,19 @@ if [[ ! -d "/srv/www/ezmlm-forum" ]]; then
 
 	# install
 	cd ezmlm-forum
+	npm install
+	npm run build
 	cp config/config.default.json config/config.json
-	bower install
 	# tweaking config
 	## set "domainRoot":, "rootUri":, "annuaireURL":, "avatarService":
 else
-	echo "ezmlm-forum already installed."
+	echo "ezmlm-forum already installed, trying to upgrade"
+	cd /srv/www/ezmlm-forum
+	if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
+		git pull
+		npm install
+		npm run build
+	else
+		echo "cannot pull, please commit first"
+	fi
 fi

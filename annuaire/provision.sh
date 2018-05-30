@@ -27,5 +27,13 @@ if [[ ! -d "/srv/www/annuaire" ]]; then
 	sed -i 's/"curl_soft_ssl": false/"curl_soft_ssl": true/' config/service.json
 	sed -i 's/"domaine_cookie": ".*"/"domaine_cookie": "tela-botanica.test"/' config/service.json
 else
-	echo "annuaire already installed."
+	echo "annuaire already installed, trying to upgrade"
+	cd /srv/www/annuaire
+	if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
+		git pull
+		npm install
+		npm run build
+	else
+		echo "cannot pull, please commit first"
+	fi
 fi

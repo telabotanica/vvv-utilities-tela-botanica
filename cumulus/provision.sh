@@ -40,5 +40,13 @@ if [[ ! -d "/srv/www/cumulus" ]]; then
 	tar xf ${DIR}/cumulus_files.sql.tar.xz
 	mysql -u wp -pwp cumulus < cumulus_files.sql
 else
-	echo "cumulus already installed."
+	echo "cumulus already installed, trying to upgrade"
+	cd /srv/www/cumulus
+	if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
+		git pull
+		npm install
+		npm run build
+	else
+		echo "cannot pull, please commit first"
+	fi
 fi
