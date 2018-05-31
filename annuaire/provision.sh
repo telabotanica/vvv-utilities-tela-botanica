@@ -31,8 +31,7 @@ else
 	cd /srv/www/annuaire
 	if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
 		git pull
-		npm install
-		npm run build
+		composer install
 	else
 		echo "cannot pull, please commit first"
 	fi
