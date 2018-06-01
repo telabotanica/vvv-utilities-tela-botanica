@@ -12,7 +12,7 @@ if [[ ! -d "/srv/www/ezmlm-php" ]]; then
 	composer install
 	# tweaking config
 	sed -i 's/"domainsPath": ".*"/"domainsPath": "\/srv\/www\/vpopmail\/domains"/' config/config.json
-	sed -i 's/"annuaireURL": ".*"/"annuaireURL": "http:\/\/api.tela-botanica.test\/annuaire\/service:annuaire:auth"/' config/config.json
+	sed -i 's/"annuaireURL": ".*"/"annuaireURL": "http:\/\/api.tela-botanica.test\/service:annuaire:auth"/' config/config.json
 	#sed -i 's/"headerName": ".*"/"headerName": "Auth"/' config/config.json
 	# tweaking service
 	sed -i 's/"domain_root": ".*"/"domain_root" : "http:\/\/api.tela-botanica.test"/' config/service.json
@@ -21,5 +21,12 @@ if [[ ! -d "/srv/www/ezmlm-php" ]]; then
 	# rm /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum
 	# ln -s /srv/www/ezmlm-php /srv/www/tela-botanica/public_html/wp-content/plugins/tela-botanica/outils/forum
 else
-	echo "ezmlm-php already installed."
+	echo "ezmlm-php already installed, trying to upgrade"
+	cd /srv/www/ezmlm-php
+	if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
+		git pull
+		composer install
+	else
+		echo "cannot pull, please commit first"
+	fi
 fi
