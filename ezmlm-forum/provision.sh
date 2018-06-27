@@ -7,7 +7,7 @@ if [[ ! -d "/srv/www/ezmlm-forum" ]]; then
 
 	# install
 	cd ezmlm-forum
-	npm install
+	npm install --unsafe-perm
 	npm run build
 	cp config/config.default.json config/config.json
 	# tweaking config
@@ -17,7 +17,7 @@ else
 	cd /srv/www/ezmlm-forum
 	if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
 		git pull
-		npm install
+		npm install --unsafe-perm
 		npm run build
 	else
 		echo "cannot pull, please commit first"

@@ -7,7 +7,7 @@ if [[ ! -d "/srv/www/cumulus-front" ]]; then
 
 	# install
 	cd cumulus-front
-	npm install
+	npm install --unsafe-perm
 	npm run build
 	cp app/utils/main-config.defaut.js app/utils/main-config.js
 
@@ -23,7 +23,7 @@ else
 	cd /srv/www/cumulus-front
 	if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
 		git pull
-		npm install
+		npm install --unsafe-perm
 		npm run build
 	else
 		echo "cannot pull, please commit first"
