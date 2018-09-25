@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Télécharge et configure wordmove
+# Download and configure wordmove
 
 ## Script from https://github.com/welaika/wordmove/wiki/Getting-Wordmove-installed-in-VVV-(or-any-Vagrant)
 # Rubygems update

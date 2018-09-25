@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Télécharge et configure tb-framework
+# Download and configure tb-framework
 if [[ ! -d "/srv/www/tb-framework" ]]; then
 	echo -e "\nDownloading tb-framework, see http://svn.tela-botanica.net/svn/applications/framework"
 	cd /srv/www

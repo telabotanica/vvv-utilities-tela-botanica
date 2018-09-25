@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Télécharge et configure eflore-consultation
+# Download and configure eflore-consultation
 if [[ ! -d "/srv/www/eflore-consultation" ]]; then
 	echo -e "\nDownloading eflore-consultation, see http://svn.tela-botanica.net/svn/eflore/applications/eflore-consultation"
 	cd /srv/www

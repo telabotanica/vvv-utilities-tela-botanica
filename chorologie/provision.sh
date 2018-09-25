@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Télécharge et configure chorologie
+# Download and configure chorologie
 if [[ ! -d "/srv/www/chorologie" ]]; then
 	echo -e "\nDownloading chorologie, see https://github.com/telabotanica/chorologie"
 	cd /srv/www

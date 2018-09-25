@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Télécharge et configure ezmlm-php
+# Download and configure ezmlm-php
 if [[ ! -d "/srv/www/ezmlm-php" ]]; then
 	echo -e "\nDownloading ezmlm-php, see https://github.com/telabotanica/ezmlm-php"
 	cd /srv/www

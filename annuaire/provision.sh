@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Télécharge et configure l'annuaire
+# Download and configure l'annuaire
 if [[ ! -d "/srv/www/annuaire" ]]; then
 	echo -e "\nDownloading annuaire, see https://github.com/telabotanica/annuaire"
 	cd /srv/www

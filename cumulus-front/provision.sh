@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Télécharge et configure cumulus-front
+# Download and configure cumulus-front
 if [[ ! -d "/srv/www/cumulus-front" ]]; then
 	echo -e "\nDownloading cumulus-front, see https://github.com/telabotanica/cumulus-front"
 	cd /srv/www

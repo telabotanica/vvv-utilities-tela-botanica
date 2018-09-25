@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Télécharge et configure cumulus
+# Download and configure cumulus
 
 DIR=`dirname $0`
 

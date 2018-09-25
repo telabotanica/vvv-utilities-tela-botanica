@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Télécharge et configure ezmlm-forum
+# Download and configure ezmlm-forum
 if [[ ! -d "/srv/www/ezmlm-forum" ]]; then
 	echo -e "\nDownloading ezmlm-forum, see https://github.com/telabotanica/ezmlm-forum"
 	cd /srv/www
