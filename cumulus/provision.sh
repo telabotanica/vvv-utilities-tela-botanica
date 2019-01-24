@@ -23,6 +23,7 @@ if [[ ! -d "/srv/www/cumulus" ]]; then
 	old_path='"annuaireURL": ".*"'
 	new_path='"annuaireURL": "http:\/\/api\.tela-botanica\.test\/service:annuaire:auth"'
 	sed -i "s/$old_path/$new_path/" config/config.json
+	sed -i "s/tb_auth/tb_auth_local_dev/" config/config.json
 	# tweaking service
 	sed -i 's/"domain_root": ".*"/"domain_root": "http:\/\/api\.tela-botanica\.test"/' config/service.json
 	sed -i 's/"base_uri": ".*"/"base_uri": "\/service:cumulus:doc"/' config/service.json
