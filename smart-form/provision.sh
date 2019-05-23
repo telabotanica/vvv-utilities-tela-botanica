@@ -7,7 +7,7 @@ if [[ ! -d "/srv/www/smart-form" ]]; then
 
 	# install
 	cd smart-form
-	npm install
+	su vagrant -c "npm install"
 	cp services/config.ini-dist services/config.ini
 	cp js/config/config.js-dist js/config/config.js
 
@@ -24,7 +24,7 @@ else
 	cd /srv/www/smart-form
 	if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
 		git pull
-		npm install
+		su vagrant -c "npm install --unsafe-perm"
 	else
 		echo "cannot pull, please commit first"
 	fi

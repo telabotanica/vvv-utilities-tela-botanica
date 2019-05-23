@@ -7,8 +7,8 @@ if [[ ! -d "/srv/www/cumulus-front" ]]; then
 
 	# install
 	cd cumulus-front
-	npm install --unsafe-perm
-	npm run build
+	su vagrant -c "npm install --unsafe-perm"
+	su vagrant -c "npm run build"
 	cp app/utils/main-config.defaut.js app/utils/main-config.js
 
 	# tweaking config (just for basic usage, gonna be overload by tb-plugin)
@@ -23,8 +23,8 @@ else
 	cd /srv/www/cumulus-front
 	if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
 		git pull
-		npm install --unsafe-perm
-		npm run build
+		su vagrant -c "npm install --unsafe-perm"
+		su vagrant -c "npm run build"
 	else
 		echo "cannot pull, please commit first"
 	fi

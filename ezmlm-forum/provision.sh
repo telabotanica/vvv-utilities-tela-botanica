@@ -7,8 +7,8 @@ if [[ ! -d "/srv/www/ezmlm-forum" ]]; then
 
 	# install
 	cd ezmlm-forum
-	npm install --unsafe-perm
-	npm run build
+	su vagrant -c "npm install --unsafe-perm"
+	su vagrant -c "npm run build"
 	cp config/config.default.json config/config.json
 	# tweaking config
 	## set "domainRoot":, "rootUri":, "annuaireURL":, "avatarService":
@@ -17,8 +17,8 @@ else
 	cd /srv/www/ezmlm-forum
 	if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
 		git pull
-		npm install --unsafe-perm
-		npm run build
+		su vagrant -c "npm install --unsafe-perm"
+		su vagrant -c "npm run build"
 	else
 		echo "cannot pull, please commit first"
 	fi

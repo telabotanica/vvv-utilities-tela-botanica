@@ -9,7 +9,7 @@ if [[ ! -d "/srv/www/ezmlm-php" ]]; then
 	cd ezmlm-php
 	cp config/service.default.json config/service.json
 	cp config/config.default.json config/config.json
-	composer install
+	su vagrant -c "composer install"
 	# tweaking config
 	sed -i 's/"domainsPath": ".*"/"domainsPath": "\/srv\/www\/vpopmail\/domains"/' config/config.json
 	sed -i 's/"annuaireURL": ".*"/"annuaireURL": "http:\/\/api.tela-botanica.test\/service:annuaire:auth"/' config/config.json
@@ -25,7 +25,7 @@ else
 	cd /srv/www/ezmlm-php
 	if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
 		git pull
-		composer install
+		su vagrant -c "composer install"
 	else
 		echo "cannot pull, please commit first"
 	fi

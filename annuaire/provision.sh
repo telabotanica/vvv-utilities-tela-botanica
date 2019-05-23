@@ -7,7 +7,7 @@ if [[ ! -d "/srv/www/annuaire" ]]; then
 
 	# install
 	cd annuaire
-	composer install
+	su vagrant -c "composer install"
 	cp config/config.default.json config/config.json
 	cp config/service.default.json config/service.json
 	cp config/clef-auth.defaut.ini config/clef-auth.ini
@@ -31,7 +31,7 @@ else
 	cd /srv/www/annuaire
 	if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
 		git pull
-		composer install
+		su vagrant -c "composer install"
 	else
 		echo "cannot pull, please commit first"
 	fi

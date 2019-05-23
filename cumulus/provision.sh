@@ -10,7 +10,7 @@ if [[ ! -d "/srv/www/cumulus" ]]; then
 
 	# install
 	cd cumulus
-	composer install
+	su vagrant -c "composer install"
 	cp config/config.default.json config/config.json
 	cp config/service.default.json config/service.json
 
@@ -45,7 +45,7 @@ else
 	cd /srv/www/cumulus
 	if [ -z "$(git status --untracked-files=no --porcelain)" ]; then
 		git pull
-		composer install
+		su vagrant -c "composer install"
 	else
 		echo "cannot pull, please commit first"
 	fi
